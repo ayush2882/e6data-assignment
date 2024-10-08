@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: adc1147eb6777484ca12c5897667026f-846301740.ap-south-1.elb.amazonaws.com
+    http:
+      paths:
+      - path: /ip
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-service
+            port:
+              number: 80
